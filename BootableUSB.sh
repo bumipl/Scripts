@@ -16,4 +16,4 @@ sudo dd if=$image of=$disk bs=16M status=progress oflag=sync
 sudo partprobe $disk 2>/dev/null
 
 # Final message
-echo "Your USb is ready, changes will be visible after reinserting the disk into the computer"
+echo "Your USB is ready, changes will be visible after reinserting the disk into the computer"
