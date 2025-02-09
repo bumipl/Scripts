@@ -23,8 +23,6 @@ check_packages() {
    if ! dpkg -l | grep -wq bc ; then
 	echo "bc package is not installed. Installing..."
 	sudo apt install bc -y
-   else
-	echo "bc package is already installed"
    fi
 }
 
