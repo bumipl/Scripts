@@ -123,7 +123,7 @@ check_journalctl_errors() {
 # Function to check system temperature
 check_temperature() {
     local temperature=$(vcgencmd measure_temp | grep -oE '[0-9]+\.[0-9]+')
-    if (( $(echo "$temperature > 70.0" | bc -l) )); then
+    if (( $(echo "$temperature > 75.0" | bc -l) )); then
         email_subject="$email_subject_p1"
         append_message "High system temperature detected: ${temperature}C"
     else
