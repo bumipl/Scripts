@@ -12,6 +12,7 @@ disk_threshold_p2=85
 email_recipient="$1"
 email_subject_p1="P1 - Raspberry Pi Monitoring Alert"
 email_subject_p2="P2 - Raspberry Pi Monitoring Alert"
+email_subject_p3="P3 - Raspberry Pi Monitoring Alert"
 email_subject_report="Raspberry Pi Monitoring Report"
 email_message=""
 
@@ -124,11 +125,14 @@ check_journalctl_errors() {
 check_temperature() {
     local temperature=$(vcgencmd measure_temp | grep -oE '[0-9]+\.[0-9]+')
     if (( $(echo "$temperature > 70.0" | bc -l) )); then
-        email_subject="$email_subject_p2"
+        email_subject="$email_subject_p3"
         append_message "High system temperature detected: ${temperature}C"
     elif (( $(echo "$temperature > 75.0" | bc -l) )); then
+        email_subject="$email_subject_p2"
+        append_message "High system temperature detected: ${temperature}C"
+    elif (( $(echo "$temperature > 80.0" | bc -l) )); then
         email_subject="$email_subject_p1"
-        append_message "High system temperature detected: ${temperature}C"     
+        append_message "High system temperature detected: ${temperature}C"               
     else
         append_message "System temperature: ${temperature}C"
     fi
